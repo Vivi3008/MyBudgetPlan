@@ -1,6 +1,21 @@
+import { createContext } from 'react';
 import { useReducer } from 'react';
 
-const AppReducer = (state, action) => {
+type ContextProps  = {
+	dispatch: React.Dispatch<any>;
+	budget: number;
+	 expenses: Array<{ 
+		id: number; 
+		name: string;
+		cost: number;}>;
+	children: React.ReactNode;
+}
+
+interface AuxProps  { 
+    children: React.ReactNode,
+ }
+
+const AppReducer = (state: any, action: any) => {
 	switch (action.type) {
 		default:
 			return state;
@@ -16,9 +31,9 @@ const initialState = {
 	],
 };
 
-export const AppContext = createContext();
+const AppContext = createContext(initialState);
 
-export const AppProvider = (props) => {
+export const AppProvider = (props: ContextProps) => {
 	const [state, dispatch] = useReducer(AppReducer, initialState);
 
 	return (
@@ -33,3 +48,5 @@ export const AppProvider = (props) => {
 		</AppContext.Provider>
 	);
 };
+
+export default AppContext;

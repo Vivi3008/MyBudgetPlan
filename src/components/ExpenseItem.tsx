@@ -1,5 +1,4 @@
 import { TiDelete } from "react-icons/ti";
-
 interface Item {
   id: Number,
   name: String,
